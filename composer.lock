@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "307d7a2db6a379f8a7ee719c9b95f568",
+    "content-hash": "70fb287c5b29c0aef62bd468fccdc2f7",
     "packages": [
         {
             "name": "brick/math",
@@ -7057,24 +7057,24 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v10.6.0",
+            "version": "10.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "87a7cb58edcfea9b1f26a63761c4d7ed5448f560"
+                "reference": "caf340bcc42dccd74f332d0cb1f2e017b6b8108b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/87a7cb58edcfea9b1f26a63761c4d7ed5448f560",
-                "reference": "87a7cb58edcfea9b1f26a63761c4d7ed5448f560",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/caf340bcc42dccd74f332d0cb1f2e017b6b8108b",
+                "reference": "caf340bcc42dccd74f332d0cb1f2e017b6b8108b",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2.2",
                 "fakerphp/faker": "^1.23",
-                "laravel/framework": "^12.24.0",
+                "laravel/framework": "^12.28.0",
                 "mockery/mockery": "^1.6.10",
-                "orchestra/testbench-core": "^10.6.1",
+                "orchestra/testbench-core": "^10.7.0",
                 "orchestra/workbench": "^10.0.6",
                 "php": "^8.2",
                 "phpunit/phpunit": "^11.5.3|^12.0.1",
@@ -7082,6 +7082,7 @@
                 "symfony/yaml": "^7.2",
                 "vlucas/phpdotenv": "^5.6.1"
             },
+            "default-branch": true,
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -7106,9 +7107,9 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench/tree/v10.6.0"
+                "source": "https://github.com/orchestral/testbench/tree/10.x"
             },
-            "time": "2025-08-20T14:38:08+00:00"
+            "time": "2025-10-16T11:43:54+00:00"
         },
         {
             "name": "orchestra/testbench-core",
@@ -9726,7 +9727,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
