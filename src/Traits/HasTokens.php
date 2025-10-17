@@ -5,7 +5,7 @@ namespace PersonalTokens\Traits;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use PersonalTokens\Models\PersonalToken;
-use PersonalTokens\PersonalToken as Config;
+use PersonalTokens\TokenCreator;
 
 trait HasTokens
 {
@@ -37,7 +37,7 @@ trait HasTokens
      */
     public function tokens(): MorphMany
     {
-        $modelClass = Config::$personalTokenModel;
+        $modelClass = TokenCreator::$personalTokenModel;
 
         return $this->morphMany($modelClass, 'owner');
     }
@@ -51,7 +51,7 @@ trait HasTokens
         ?Carbon $expiresAt = null,
         ?string $plainTextToken = null,
     ): string {
-        return Config::createToken(
+        return TokenCreator::createToken(
             type: $type,
             model: $this,
             payload: $payload,

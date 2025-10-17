@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
-use PersonalTokens\PersonalToken as Config;
+use PersonalTokens\TokenCreator;
 
 use function Illuminate\Support\enum_value;
 
@@ -98,9 +98,9 @@ class PersonalToken extends Model
         ?Carbon $expiresAt = null,
         ?string $plainTextToken = null,
     ): string {
-        $plainTextToken ??= Config::createPlainTextToken();
+        $plainTextToken ??= TokenCreator::createPlainTextToken();
 
-        $expiresAt ??= Carbon::now()->addMinutes(Config::$expiresAt);
+        $expiresAt ??= Carbon::now()->addMinutes(TokenCreator::$expiresAt);
 
         $token = self::make([
             'payload' => $payload,

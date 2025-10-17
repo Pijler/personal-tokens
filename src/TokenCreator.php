@@ -4,9 +4,9 @@ namespace PersonalTokens;
 
 use Closure;
 use Illuminate\Support\Str;
-use PersonalTokens\Models\PersonalToken as PersonalTokenModel;
+use PersonalTokens\Models\PersonalToken;
 
-class PersonalToken
+class TokenCreator
 {
     /**
      * The default expiration time (in minutes) for generated personal tokens.
@@ -24,7 +24,7 @@ class PersonalToken
      *
      * Example:
      *
-     * PersonalToken::plainTextTokenUsing(fn () => Str::random(5));
+     * TokenCreator::plainTextTokenUsing(fn () => Str::random(5));
      */
     public static ?Closure $plainTextToken = null;
 
@@ -34,7 +34,7 @@ class PersonalToken
      * This model is responsible for persisting and managing personal tokens
      * in the database. You can override this to use a custom implementation.
      */
-    public static string $personalTokenModel = PersonalTokenModel::class;
+    public static string $personalTokenModel = PersonalToken::class;
 
     /**
      * Set the default expiration time (in minutes) for generated personal tokens.
@@ -63,7 +63,7 @@ class PersonalToken
     /**
      * Resolve a new instance of the configured PersonalToken model.
      */
-    public static function resolveModel(): PersonalTokenModel
+    public static function resolveModel(): PersonalToken
     {
         return resolve(static::$personalTokenModel);
     }
