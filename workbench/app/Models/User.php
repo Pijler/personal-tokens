@@ -4,10 +4,12 @@ namespace Workbench\App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use PersonalTokens\Traits\HasTokens;
 
 class User extends Authenticatable
 {
     use HasFactory;
+    use HasTokens;
 
     /**
      * The attributes that are mass assignable.

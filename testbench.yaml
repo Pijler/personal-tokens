@@ -1,4 +1,4 @@
-laravel: './workbench'
+laravel: "./workbench"
 
 providers:
   - PersonalTokens\ServiceProvider
@@ -11,7 +11,7 @@ seeders:
   - Workbench\Database\Seeders\DatabaseSeeder
 
 workbench:
-  start: '/'
+  start: "/"
   install: true
   discovers:
     web: true
