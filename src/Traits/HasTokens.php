@@ -25,7 +25,7 @@ trait HasTokens
     /**
      * Set the current personal token for the model.
      */
-    public function withToken(PersonalToken $token): self
+    public function withToken(?PersonalToken $token): self
     {
         $this->token = $token;
 

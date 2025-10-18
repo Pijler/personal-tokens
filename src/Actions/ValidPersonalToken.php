@@ -3,6 +3,7 @@
 namespace PersonalTokens\Actions;
 
 use PersonalTokens\Models\PersonalToken;
+use PersonalTokens\TokenCreator;
 
 use function Illuminate\Support\enum_value;
 
@@ -15,7 +16,7 @@ class ValidPersonalToken
     {
         $type = enum_value($type);
 
-        $token = PersonalToken::findToken($token);
+        $token = TokenCreator::findToken($token);
 
         return self::isValid($type, $token) ? $token : null;
     }

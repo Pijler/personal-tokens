@@ -75,6 +75,15 @@ class PersonalToken extends Model
     }
 
     /**
+     * Check if the token belongs to the given owner.
+     */
+    public function belongsToOwner(Model $owner): bool
+    {
+        return $this->owner_id === $owner->getKey()
+            && $this->owner_type === get_class($owner);
+    }
+
+    /**
      * Find the token instance matching the given token.
      */
     public static function findToken(string $token): ?self

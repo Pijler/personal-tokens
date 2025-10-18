@@ -4,6 +4,7 @@ namespace PersonalTokens;
 
 use Closure;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 use PersonalTokens\Models\PersonalToken;
 
 class TokenCreator
@@ -77,6 +78,14 @@ class TokenCreator
     }
 
     /**
+     * Proxy method to find a personal token using the configured model.
+     */
+    public static function findToken(string $token): ?PersonalToken
+    {
+        return static::resolveModel()::findToken($token);
+    }
+
+    /**
      * Create a new plain text token using the configured generator or default random string.
      */
     public static function createPlainTextToken(): string
@@ -85,6 +94,12 @@ class TokenCreator
             return Str::random(40);
         }
 
-        return (static::$plainTextToken)();
+        $result = (static::$plainTextToken)();
+
+        if (! is_string($result)) {
+            throw new InvalidArgumentException('Custom token generator returned non-string value');
+        }
+
+        return $result;
     }
 }
