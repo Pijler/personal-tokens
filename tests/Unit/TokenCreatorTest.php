@@ -124,7 +124,7 @@ test('it should handle null from custom generator', function () {
     rescue(fn () => TokenCreator::createPlainTextToken(), function ($e) {
         expect($e)->toBeInstanceOf(InvalidArgumentException::class);
         expect($e->getMessage())->toBe('Custom token generator returned non-string value');
-    });
+    }, false);
 });
 
 test('it should handle custom generator that throws exception', function () {
@@ -135,7 +135,7 @@ test('it should handle custom generator that throws exception', function () {
     rescue(fn () => TokenCreator::createPlainTextToken(), function ($e) {
         expect($e)->toBeInstanceOf(Exception::class);
         expect($e->getMessage())->toBe('Generator error');
-    });
+    }, false);
 });
 
 test('it should create multiple tokens with different values using default generator', function () {
