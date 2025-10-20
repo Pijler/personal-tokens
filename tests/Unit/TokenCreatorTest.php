@@ -152,8 +152,8 @@ test('it should create multiple tokens with different values using default gener
 
 test('it should maintain state across multiple calls', function () {
     TokenCreator::expiresAt(120);
-    TokenCreator::plainTextTokenUsing(fn () => 'persistent-token');
     TokenCreator::usePersonalTokenModel(PersonalToken::class);
+    TokenCreator::plainTextTokenUsing(fn () => 'persistent-token');
 
     expect(TokenCreator::$expiresAt)->toBe(120);
     expect(TokenCreator::$plainTextToken)->not->toBeNull();
