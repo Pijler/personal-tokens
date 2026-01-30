@@ -3,7 +3,6 @@
 namespace PersonalTokens\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
@@ -14,7 +13,6 @@ use function Illuminate\Support\enum_value;
 
 class PersonalToken extends Model
 {
-    use HasFactory;
     use HasUuids;
 
     /**
