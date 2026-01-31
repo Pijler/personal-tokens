@@ -96,17 +96,19 @@ class TokenCreator
 
         $token = static::findToken($token);
 
-        return static::isValidToken($type, $token) ? $token : null;
+        return blank($token) ? null : static::isValidToken($type, $token);
     }
 
     /**
      * Check if the personal token is valid.
      */
-    private static function isValidToken(mixed $type, ?PersonalToken $token): bool
+    private static function isValidToken(mixed $type, PersonalToken $token): ?PersonalToken
     {
-        $typeValid = is_null($type) || $type === enum_value($token?->type);
+        $typeValid = is_null($type) || $type === enum_value($token->type);
 
-        return $typeValid && ! $token?->isUsed() && ! $token?->isExpired();
+        $valid = $typeValid && ! $token->isUsed() && ! $token->isExpired();
+
+        return $valid ? $token : null;
     }
 
     /**
