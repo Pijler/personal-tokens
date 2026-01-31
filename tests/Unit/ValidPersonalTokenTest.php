@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use PersonalTokens\Actions\ValidPersonalToken;
+use PersonalTokens\TokenCreator;
 use Workbench\App\Models\PersonalToken;
 
 test('it should return null when token is not found', function () {
-    $result = ValidPersonalToken::handle('invalid-token');
+    $result = TokenCreator::validToken('invalid-token');
 
     expect($result)->toBeNull();
 });
@@ -19,7 +19,7 @@ test('it should return null when token is used', function () {
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken);
+    $result = TokenCreator::validToken($plainToken);
 
     expect($result)->toBeNull();
 });
@@ -33,7 +33,7 @@ test('it should return null when token is expired', function () {
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken);
+    $result = TokenCreator::validToken($plainToken);
 
     expect($result)->toBeNull();
 });
@@ -48,7 +48,7 @@ test('it should return null when token type does not match', function () {
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken, 'type-2');
+    $result = TokenCreator::validToken($plainToken, 'type-2');
 
     expect($result)->toBeNull();
 });
@@ -62,7 +62,7 @@ test('it should return PersonalToken when token is valid without type check', fu
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken);
+    $result = TokenCreator::validToken($plainToken);
 
     expect($result->id)->toBe($personal->id);
     expect($result)->toBeInstanceOf(PersonalToken::class);
@@ -78,7 +78,7 @@ test('it should return PersonalToken when token is valid with matching type', fu
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken, 'type-1');
+    $result = TokenCreator::validToken($plainToken, 'type-1');
 
     expect($result->id)->toBe($personal->id);
     expect($result)->toBeInstanceOf(PersonalToken::class);
@@ -94,7 +94,7 @@ test('it should return null when token is used even if type matches', function (
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken, 'type-1');
+    $result = TokenCreator::validToken($plainToken, 'type-1');
 
     expect($result)->toBeNull();
 });
@@ -109,7 +109,7 @@ test('it should return null when token is expired even if type matches', functio
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken, 'type-1');
+    $result = TokenCreator::validToken($plainToken, 'type-1');
 
     expect($result)->toBeNull();
 });
@@ -123,7 +123,7 @@ test('it should handle null type parameter correctly', function () {
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken, null);
+    $result = TokenCreator::validToken($plainToken, null);
 
     expect($result->id)->toBe($personal->id);
     expect($result)->toBeInstanceOf(PersonalToken::class);
@@ -139,7 +139,7 @@ test('it should handle empty string type parameter correctly', function () {
 
     $plainToken = encrypt("{$personal->id}|{$token}");
 
-    $result = ValidPersonalToken::handle($plainToken, '');
+    $result = TokenCreator::validToken($plainToken, '');
 
     expect($result->id)->toBe($personal->id);
     expect($result)->toBeInstanceOf(PersonalToken::class);

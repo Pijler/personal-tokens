@@ -4,7 +4,7 @@ namespace PersonalTokens\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use PersonalTokens\Actions\ValidPersonalToken;
+use PersonalTokens\TokenCreator;
 
 class EnsureValidPersonalToken
 {
@@ -20,7 +20,7 @@ class EnsureValidPersonalToken
             abort(401, trans('Invalid or expired personal token.'));
         }
 
-        if (! ValidPersonalToken::handle($token, $type)) {
+        if (! TokenCreator::validToken($token, $type)) {
             abort(401, trans('Invalid or expired personal token.'));
         }
 

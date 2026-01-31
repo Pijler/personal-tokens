@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use PersonalTokens\Models\PersonalToken;
 
+use function Illuminate\Support\enum_value;
+
 class TokenCreator
 {
     /**
@@ -83,6 +85,30 @@ class TokenCreator
     public static function findToken(string $token): ?PersonalToken
     {
         return static::resolveModel()::findToken($token);
+    }
+
+    /**
+     * Validate a personal token and return it if valid.
+     */
+    public static function validToken(string $token, mixed $type = null): ?PersonalToken
+    {
+        $type = enum_value($type);
+
+        $token = static::findToken($token);
+
+        return blank($token) ? null : static::isValidToken($type, $token);
+    }
+
+    /**
+     * Check if the personal token is valid.
+     */
+    private static function isValidToken(mixed $type, PersonalToken $token): ?PersonalToken
+    {
+        $typeValid = is_null($type) || $type === enum_value($token->type);
+
+        $valid = $typeValid && ! $token->isUsed() && ! $token->isExpired();
+
+        return $valid ? $token : null;
     }
 
     /**
