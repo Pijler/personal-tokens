@@ -12,22 +12,22 @@ trait HasTokens
     /**
      * The personal token the model is using for the current request.
      */
-    private ?PersonalToken $token = null;
+    private ?PersonalToken $personalToken = null;
 
     /**
      * Get the personal token currently associated with the model.
      */
-    public function currentToken(): ?PersonalToken
+    public function currentPersonalToken(): ?PersonalToken
     {
-        return $this->token;
+        return $this->personalToken;
     }
 
     /**
      * Set the current personal token for the model.
      */
-    public function withToken(?PersonalToken $token): self
+    public function withPersonalToken(?PersonalToken $token): self
     {
-        $this->token = $token;
+        $this->personalToken = $token;
 
         return $this;
     }
@@ -35,7 +35,7 @@ trait HasTokens
     /**
      * Get the personal tokens that belong to model.
      */
-    public function tokens(): MorphMany
+    public function personalTokens(): MorphMany
     {
         $modelClass = TokenCreator::$personalTokenModel;
 
@@ -45,7 +45,7 @@ trait HasTokens
     /**
      * Create a new personal token for the model.
      */
-    public function createToken(
+    public function createPersonalToken(
         mixed $type,
         ?array $payload = null,
         ?Carbon $expiresAt = null,

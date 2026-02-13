@@ -17,20 +17,20 @@ beforeEach(function () {
 });
 
 test('it should initialize with null current token', function () {
-    expect($this->owner->currentToken())->toBeNull();
+    expect($this->owner->currentPersonalToken())->toBeNull();
 });
 
 test('it should set and get current token', function () {
     $token = PersonalToken::factory()->create();
 
-    $result = $this->owner->withToken($token);
+    $result = $this->owner->withPersonalToken($token);
 
     expect($result)->toBe($this->owner);
-    expect($this->owner->currentToken())->toBe($token);
+    expect($this->owner->currentPersonalToken())->toBe($token);
 });
 
 test('it should return morphMany relationship for tokens', function () {
-    $result = $this->owner->tokens();
+    $result = $this->owner->personalTokens();
 
     expect($result)->toBeInstanceOf(MorphMany::class);
 });
@@ -39,7 +39,7 @@ test('it should use custom personal token model for tokens relationship', functi
     $customModel = PersonalToken::class; // Use same class for testing
     TokenCreator::usePersonalTokenModel($customModel);
 
-    $result = $this->owner->tokens();
+    $result = $this->owner->personalTokens();
 
     expect($result)->toBeInstanceOf(MorphMany::class);
 });
@@ -50,7 +50,7 @@ test('it should create token with all parameters', function () {
     $plainTextToken = 'plain-token';
     $expiresAt = Carbon::now()->addHour();
 
-    $result = $this->owner->createToken($type, $payload, $expiresAt, $plainTextToken);
+    $result = $this->owner->createPersonalToken($type, $payload, $expiresAt, $plainTextToken);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -59,7 +59,7 @@ test('it should create token with all parameters', function () {
 test('it should create token with minimal parameters', function () {
     $type = 'test-type';
 
-    $result = $this->owner->createToken($type);
+    $result = $this->owner->createPersonalToken($type);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -68,7 +68,7 @@ test('it should create token with minimal parameters', function () {
 test('it should create token with null payload', function () {
     $type = 'test-type';
 
-    $result = $this->owner->createToken($type, null);
+    $result = $this->owner->createPersonalToken($type, null);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -78,7 +78,7 @@ test('it should create token with empty array payload', function () {
     $type = 'test-type';
     $payload = [];
 
-    $result = $this->owner->createToken($type, $payload);
+    $result = $this->owner->createPersonalToken($type, $payload);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -88,7 +88,7 @@ test('it should create token with custom expiration time', function () {
     $type = 'test-type';
     $expiresAt = Carbon::now()->addDays(7);
 
-    $result = $this->owner->createToken($type, null, $expiresAt);
+    $result = $this->owner->createPersonalToken($type, null, $expiresAt);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -98,7 +98,7 @@ test('it should create token with custom plain text token', function () {
     $type = 'test-type';
     $plainTextToken = 'custom-plain-token';
 
-    $result = $this->owner->createToken($type, null, null, $plainTextToken);
+    $result = $this->owner->createPersonalToken($type, null, null, $plainTextToken);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -107,8 +107,8 @@ test('it should create token with custom plain text token', function () {
 test('it should create multiple tokens for the same model', function () {
     $type = 'test-type';
 
-    $result1 = $this->owner->createToken($type);
-    $result2 = $this->owner->createToken($type);
+    $result1 = $this->owner->createPersonalToken($type);
+    $result2 = $this->owner->createPersonalToken($type);
 
     expect($result1)->toBeString();
     expect($result2)->toBeString();
@@ -119,25 +119,25 @@ test('it should maintain current token state independently', function () {
     $token1 = PersonalToken::factory()->create();
     $token2 = PersonalToken::factory()->create();
 
-    $this->owner->withToken($token1);
-    expect($this->owner->currentToken())->toBe($token1);
+    $this->owner->withPersonalToken($token1);
+    expect($this->owner->currentPersonalToken())->toBe($token1);
 
-    $this->owner->withToken($token2);
-    expect($this->owner->currentToken())->toBe($token2);
+    $this->owner->withPersonalToken($token2);
+    expect($this->owner->currentPersonalToken())->toBe($token2);
 });
 
 test('it should handle null token assignment', function () {
-    $this->owner->withToken(null);
-    expect($this->owner->currentToken())->toBeNull();
+    $this->owner->withPersonalToken(null);
+    expect($this->owner->currentPersonalToken())->toBeNull();
 });
 
-test('it should use custom personal token model for createToken', function () {
+test('it should use custom personal token model for createPersonalToken', function () {
     $customModel = PersonalToken::class; // Use same class for testing
     TokenCreator::usePersonalTokenModel($customModel);
 
     $type = 'test-type';
 
-    $result = $this->owner->createToken($type);
+    $result = $this->owner->createPersonalToken($type);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -147,7 +147,7 @@ test('it should create token with different types', function () {
     $types = ['invite_user', 'new_device', 'password_reset', 'email_verification'];
 
     foreach ($types as $type) {
-        $result = $this->owner->createToken($type);
+        $result = $this->owner->createPersonalToken($type);
 
         expect($result)->toBeString();
         expect(strlen($result))->toBeGreaterThan(0);
@@ -166,7 +166,7 @@ test('it should create token with complex payload', function () {
         ],
     ];
 
-    $result = $this->owner->createToken($type, $payload);
+    $result = $this->owner->createPersonalToken($type, $payload);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -176,7 +176,7 @@ test('it should create token with future expiration', function () {
     $type = 'test-type';
     $expiresAt = Carbon::now()->addYear();
 
-    $result = $this->owner->createToken($type, null, $expiresAt);
+    $result = $this->owner->createPersonalToken($type, null, $expiresAt);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -186,7 +186,7 @@ test('it should create token with past expiration', function () {
     $type = 'test-type';
     $expiresAt = Carbon::now()->subHour();
 
-    $result = $this->owner->createToken($type, null, $expiresAt);
+    $result = $this->owner->createPersonalToken($type, null, $expiresAt);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -196,7 +196,7 @@ test('it should create token with very long plain text', function () {
     $type = 'test-type';
     $plainTextToken = Str::random(1000);
 
-    $result = $this->owner->createToken($type, null, null, $plainTextToken);
+    $result = $this->owner->createPersonalToken($type, null, null, $plainTextToken);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);
@@ -206,7 +206,7 @@ test('it should create token with empty plain text', function () {
     $type = 'test-type';
     $plainTextToken = '';
 
-    $result = $this->owner->createToken($type, null, null, $plainTextToken);
+    $result = $this->owner->createPersonalToken($type, null, null, $plainTextToken);
 
     expect($result)->toBeString();
     expect(strlen($result))->toBeGreaterThan(0);

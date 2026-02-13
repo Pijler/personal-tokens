@@ -86,10 +86,10 @@ use Illuminate\Support\Carbon;
 $user = User::find(1);
 
 // Basic token
-$token = $user->createToken('email-verification');
+$token = $user->createPersonalToken('email-verification');
 
 // Token with custom payload
-$token = $user->createToken(
+$token = $user->createPersonalToken(
     type: 'password-reset',
     payload: [
         'ip' => request()->ip(),
@@ -98,13 +98,13 @@ $token = $user->createToken(
 );
 
 // Token with custom expiration
-$token = $user->createToken(
+$token = $user->createPersonalToken(
     type: 'temporary-access',
     expiresAt: Carbon::now()->addDays(7),
 );
 
 // Token with custom value
-$token = $user->createToken(
+$token = $user->createPersonalToken(
     type: 'custom-token',
     plainTextToken: 'my-custom-token',
 );
@@ -238,10 +238,10 @@ PersonalToken::findToken(string $token): ?self
 
 ```php
 // Methods available on model
-$model->tokens(): MorphMany
-$model->currentToken(): ?PersonalToken
-$model->withToken(?PersonalToken $token): self
-$model->createToken(
+$model->personalTokens(): MorphMany
+$model->currentPersonalToken(): ?PersonalToken
+$model->withPersonalToken(?PersonalToken $token): self
+$model->createPersonalToken(
     mixed $type,
     ?array $payload = null,
     ?Carbon $expiresAt = null,
