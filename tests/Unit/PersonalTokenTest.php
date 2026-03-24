@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -42,7 +43,7 @@ test('it should return morphTo relationship for owner', function () {
     $model = new PersonalToken;
     $result = $model->owner();
 
-    expect($result)->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\MorphTo::class);
+    expect($result)->toBeInstanceOf(MorphTo::class);
 });
 
 test('it should return true when token is used', function () {
