@@ -1,4 +1,10 @@
-# 📌 Laravel Personal Tokens
+<p align="center">
+<img src="https://raw.githubusercontent.com/Pijler/docs/main/assets/pijler-icon-dark.svg" height="100" alt="Pijler logo">
+</p>
+
+<h2><p align="center">Laravel Personal Tokens</p></h2>
+
+### 🚀 Introduction
 
 This package provides support for generating and validating personal tokens in Laravel. Personal tokens are useful for temporary authentication, one-time access links, email confirmations, password resets, and other use cases that require secure and temporary access.
 
@@ -253,4 +259,4 @@ $model->createPersonalToken(
 
 Open-source under the [MIT license](LICENSE).
 
-## 🚀 Thanks!
+### 🚀 Thanks!
