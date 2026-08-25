@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 use Workbench\App\Models\PersonalToken;
 
 test('it should return null when token is not found', function () {

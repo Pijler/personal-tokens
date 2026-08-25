@@ -3,7 +3,7 @@
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 use Workbench\App\Models\PersonalToken;
 use Workbench\App\Models\User;
 

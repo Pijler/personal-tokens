@@ -1,9 +1,9 @@
 <?php
 
-namespace PersonalTokens\Actions;
+namespace Pijler\PersonalTokens\Actions;
 
-use PersonalTokens\Models\PersonalToken;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\Models\PersonalToken;
+use Pijler\PersonalTokens\TokenCreator;
 
 /**
  * @deprecated Use TokenCreator::validToken() instead.

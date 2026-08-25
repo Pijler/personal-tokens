@@ -48,7 +48,7 @@ php artisan migrate
 The package works out-of-the-box, but you can customize the behavior:
 
 ```php
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -76,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
 Add the `HasTokens` trait to your model:
 
 ```php
-use PersonalTokens\Traits\HasTokens;
+use Pijler\PersonalTokens\Traits\HasTokens;
 
 class User extends Model
 {
@@ -119,7 +119,7 @@ $token = $user->createPersonalToken(
 #### 3. Validating Tokens
 
 ```php
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 
 // Find token
 $personalToken = TokenCreator::findToken($tokenString);
@@ -171,7 +171,7 @@ fetch("/protected", {
 #### 5. Working with the PersonalToken Model
 
 ```php
-use PersonalTokens\Models\PersonalToken;
+use Pijler\PersonalTokens\Models\PersonalToken;
 
 // Create token directly
 $token = PersonalToken::createToken(

@@ -1,11 +1,11 @@
 <?php
 
-namespace PersonalTokens;
+namespace Pijler\PersonalTokens;
 
 use Closure;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use PersonalTokens\Models\PersonalToken;
+use Pijler\PersonalTokens\Models\PersonalToken;
 
 use function Illuminate\Support\enum_value;
 

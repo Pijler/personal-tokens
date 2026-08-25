@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use PersonalTokens\Middleware\EnsureValidPersonalToken;
+use Pijler\PersonalTokens\Middleware\EnsureValidPersonalToken;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Workbench\App\Models\PersonalToken;
 

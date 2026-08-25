@@ -1,7 +1,7 @@
 laravel: "./workbench"
 
 providers:
-  - PersonalTokens\ServiceProvider
+  - Pijler\PersonalTokens\ServiceProvider
   - Workbench\App\Providers\WorkbenchServiceProvider
 
 migrations:
