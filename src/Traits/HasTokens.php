@@ -1,11 +1,11 @@
 <?php
 
-namespace PersonalTokens\Traits;
+namespace Pijler\PersonalTokens\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Carbon;
-use PersonalTokens\Models\PersonalToken;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\Models\PersonalToken;
+use Pijler\PersonalTokens\TokenCreator;
 
 trait HasTokens
 {

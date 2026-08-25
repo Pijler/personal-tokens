@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use PersonalTokens\Models\PersonalToken;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\Models\PersonalToken;
+use Pijler\PersonalTokens\TokenCreator;
 use Workbench\App\Models\User;
 
 beforeEach(function () {

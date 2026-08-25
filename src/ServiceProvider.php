@@ -1,10 +1,10 @@
 <?php
 
-namespace PersonalTokens;
+namespace Pijler\PersonalTokens;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
-use PersonalTokens\Middleware\EnsureValidPersonalToken;
+use Pijler\PersonalTokens\Middleware\EnsureValidPersonalToken;
 
 class ServiceProvider extends LaravelServiceProvider
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace PersonalTokens\Middleware;
+namespace Pijler\PersonalTokens\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 
 class EnsureValidPersonalToken
 {

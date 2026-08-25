@@ -3,7 +3,7 @@
 namespace Workbench\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 use Workbench\App\Models\PersonalToken;
 
 class WorkbenchServiceProvider extends ServiceProvider

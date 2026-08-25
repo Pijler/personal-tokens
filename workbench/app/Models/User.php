@@ -4,7 +4,7 @@ namespace Workbench\App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use PersonalTokens\Traits\HasTokens;
+use Pijler\PersonalTokens\Traits\HasTokens;
 
 class User extends Authenticatable
 {

@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PersonalTokens\\": "src/"
+            "Pijler\\PersonalTokens\\": "src/"
         }
     },
     "autoload-dev": {
@@ -49,7 +49,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "PersonalTokens\\ServiceProvider"
+                "Pijler\\PersonalTokens\\ServiceProvider"
             ]
         }
     },

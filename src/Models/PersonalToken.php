@@ -1,13 +1,13 @@
 <?php
 
-namespace PersonalTokens\Models;
+namespace Pijler\PersonalTokens\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
-use PersonalTokens\TokenCreator;
+use Pijler\PersonalTokens\TokenCreator;
 
 use function Illuminate\Support\enum_value;
 
