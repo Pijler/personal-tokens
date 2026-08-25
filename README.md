@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/Pijler/docs/main/assets/pijler-icon-dark.svg" height="100" alt="Pijler logo">
 </p>
 
-<h2><p align="center">Laravel Personal Tokens</p></h2>
+<h2><p align="center">Personal Tokens</p></h2>
 
 ### 🚀 Introduction
 
